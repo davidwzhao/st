@@ -5,8 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-static int borderpx = 2;
+static char *font = "Fira Code Retina:size=9";
+static int borderpx = 48;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -91,7 +91,7 @@ static const char *colorname[] = {
 	"yellow3",
 	"blue2",
 	"magenta3",
-	"cyan3",
+	
 	"gray90",
 
 	/* 8 bright colors */
@@ -108,7 +108,8 @@ static const char *colorname[] = {
 
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
-	"#555555",
+	"#282828",
+    "#cccccc"
 };
 
 
@@ -116,10 +117,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 7;
-unsigned int defaultbg = 0;
-static unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultfg = 257;
+unsigned int defaultbg = 256;
+static unsigned int defaultcs = 258;
+static unsigned int defaultrcs = 256;
 
 /*
  * Default shape of cursor
@@ -149,6 +150,42 @@ static unsigned int mousebg = 0;
  * doesn't match the ones requested.
  */
 static unsigned int defaultattr = 11;
+
+/*
+ * Xresources preferences to load at startup
+ */
+ResourcePref resources[] = {
+		{ "font",           STRING,  &font },
+		{ "color0",         STRING,  &colorname[0] },
+		{ "color1",         STRING,  &colorname[1] },
+		{ "color2",         STRING,  &colorname[2] },
+		{ "color3",         STRING,  &colorname[3] },
+		{ "color4",         STRING,  &colorname[4] },
+		{ "color5",         STRING,  &colorname[5] },
+		{ "color6",         STRING,  &colorname[6] },
+		{ "color7",         STRING,  &colorname[7] },
+		{ "color8",         STRING,  &colorname[8] },
+		{ "color9",         STRING,  &colorname[9] },
+		{ "color10",        STRING,  &colorname[10] },
+		{ "color11",        STRING,  &colorname[11] },
+		{ "color12",        STRING,  &colorname[12] },
+		{ "color13",        STRING,  &colorname[13] },
+		{ "color14",        STRING,  &colorname[14] },
+		{ "color15",        STRING,  &colorname[15] },
+		{ "background",     STRING,  &colorname[256] },
+		{ "foreground",     STRING,  &colorname[257] },
+		{ "cursorColor",    STRING,  &colorname[258] },
+		{ "internalBorder", INTEGER, &borderpx },
+		{ "termname",       STRING,  &termname },
+		{ "shell",          STRING,  &shell },
+		{ "xfps",           INTEGER, &xfps },
+		{ "actionfps",      INTEGER, &actionfps },
+		{ "blinktimeout",   INTEGER, &blinktimeout },
+		{ "bellvolume",     INTEGER, &bellvolume },
+		{ "tabspaces",      INTEGER, &tabspaces },
+		{ "cwscale",        FLOAT,   &cwscale },
+		{ "chscale",        FLOAT,   &chscale },
+};
 
 /*
  * Internal mouse shortcuts.
