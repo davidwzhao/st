@@ -12,10 +12,12 @@ makedepends=('ncurses')
 url="http://st.suckless.org"
 source=(http://dl.suckless.org/st/$pkgname-$pkgver.tar.gz
         config.h
-        st-xresources-20180309-c5ba9c0.diff)
+        st-xresources-20180309-c5ba9c0.diff
+        st-boxdraw-20181101-30ec9a3.diff)
 sha256sums=('c4fb0fe2b8d2d3bd5e72763e80a8ae05b7d44dbac8f8e3bb18ef0161c7266926'
             'SKIP'
-            'cd584a1b0fab0acf0605372e7076de103b39a39c2ad13d593b4413a79199ece1')
+            'cd584a1b0fab0acf0605372e7076de103b39a39c2ad13d593b4413a79199ece1'
+            '8d9082636898151554df8d4fb3be077dca147ac172aa016e6509b3a78bd126c8')
             # 'bed7977c855f02e3968a754e813015e4214b52102e3c54712d8a52245bcceeec')
 
 prepare() {
@@ -23,6 +25,7 @@ prepare() {
   # skip terminfo which conflicts with nsurses
   sed -i '/tic /d' Makefile
   cp $srcdir/config.h config.h
+  patch < $srcdir/st-boxdraw-20181101-30ec9a3.diff
   patch < $srcdir/st-xresources-20180309-c5ba9c0.diff
 }
 
