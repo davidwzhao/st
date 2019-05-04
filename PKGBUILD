@@ -1,11 +1,12 @@
+# Maintainer: Jose Riha <jose1711 gmail com>
 # Contributor: Patrick Jackson <PatrickSJackson gmail com>
-# Maintainer: Christoph Vigano <mail@cvigano.de>
+# Contributor: Christoph Vigano <mail@cvigano.de>
 
 pkgname=st
-pkgver=0.8.1
-pkgrel=1
+pkgver=0.8.2
+pkgrel=2
 pkgdesc='A simple virtual terminal emulator for X.'
-arch=('i686' 'x86_64')
+arch=('i686' 'x86_64' 'armv7h')
 license=('MIT')
 depends=('libxft' 'libxext' 'xorg-fonts-misc')
 makedepends=('ncurses')
@@ -39,4 +40,6 @@ package() {
   make PREFIX=/usr DESTDIR="$pkgdir" TERMINFO="$pkgdir/usr/share/terminfo" install
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   install -Dm644 README "$pkgdir/usr/share/doc/$pkgname/README"
+  # remove to avoid conflict with ncurses
+  rm "${pkgdir}/usr/share/terminfo/s/st" "${pkgdir}/usr/share/terminfo/s/st-256color" 
 }
