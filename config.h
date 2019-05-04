@@ -63,6 +63,8 @@ static unsigned int cursorthickness = 2;
  * 0: disable (render all glyphs normally from the font).
  */
 const int boxdraw = 1;
+const int boxdraw_bold = 0;
+const int boxdraw_braille = 0;
 
 /*
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling

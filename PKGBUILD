@@ -13,12 +13,12 @@ makedepends=('ncurses')
 url="http://st.suckless.org"
 source=(http://dl.suckless.org/st/$pkgname-$pkgver.tar.gz
         config.h
-        st-xresources-20180309-c5ba9c0.diff
-        st-boxdraw-20181101-30ec9a3.diff)
-sha256sums=('c4fb0fe2b8d2d3bd5e72763e80a8ae05b7d44dbac8f8e3bb18ef0161c7266926'
+        https://st.suckless.org/patches/xresources/st-xresources-20190105-3be4cf1.diff
+        https://st.suckless.org/patches/boxdraw/st-boxdraw_v2-$pkgver.diff)
+sha256sums=('aeb74e10aa11ed364e1bcc635a81a523119093e63befd2f231f8b0705b15bf35'
             'SKIP'
-            'cd584a1b0fab0acf0605372e7076de103b39a39c2ad13d593b4413a79199ece1'
-            '8d9082636898151554df8d4fb3be077dca147ac172aa016e6509b3a78bd126c8')
+            '71c55b796beebecb5e268405f369122fa5a8cf22d992725f00c6c88fe5895f84'
+            'c1b7ab7672815b73e8328ecc55300c12fddce9ecae4ab04ff4377bd9132089f6')
             # 'bed7977c855f02e3968a754e813015e4214b52102e3c54712d8a52245bcceeec')
 
 prepare() {
@@ -26,8 +26,8 @@ prepare() {
   # skip terminfo which conflicts with nsurses
   sed -i '/tic /d' Makefile
   cp $srcdir/config.h config.h
-  patch < $srcdir/st-boxdraw-20181101-30ec9a3.diff
-  patch < $srcdir/st-xresources-20180309-c5ba9c0.diff
+  patch < $srcdir/st-boxdraw_v2-$pkgver.diff
+  patch < $srcdir/st-xresources-20190105-3be4cf1.diff
 }
 
 build() {
@@ -41,5 +41,5 @@ package() {
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   install -Dm644 README "$pkgdir/usr/share/doc/$pkgname/README"
   # remove to avoid conflict with ncurses
-  rm "${pkgdir}/usr/share/terminfo/s/st" "${pkgdir}/usr/share/terminfo/s/st-256color" 
+  rm -f "${pkgdir}/usr/share/terminfo/s/st" "${pkgdir}/usr/share/terminfo/s/st-256color" 
 }
