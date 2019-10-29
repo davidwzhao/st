@@ -1,5 +1,6 @@
-pkg
-src
-*.pkg.tar.xz
-*.tar.gz
-*.diff
+/*.pkg.tar.xz
+/config.def.h
+/pkg/
+/src/
+/st-*.tar.gz
+/*.diff
